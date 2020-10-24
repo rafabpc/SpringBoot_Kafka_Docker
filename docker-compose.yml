@@ -1,0 +1,21 @@
+version: "3"
+services:
+  application-example:
+    image: application-example:1.0
+    container_name: "application-example"
+    ports:
+      - 8085:8085
+  zookeeper-example:
+    image: wurstmeister/zookeeper
+    container_name: "zookeper-example"
+    ports:
+      - 2181:2181
+  kafka-example:
+    image: wurstmeister/kafka
+    container_name: "kafka-example"
+    ports:
+      - 9092:9092
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: kafka-example
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper-example:2181
+      KAFKA_CREATE_TOPICS: "kafka_application_topic_example"
